@@ -13,7 +13,7 @@ const ListPresenter = ({ data }: ListPresenterProps) => {
       <div />
       <S.ListBox>
         {data.map((el) => (
-          <Item key={el.id} data={el} />
+          <Item key={el.item_no} data={el} />
         ))}
       </S.ListBox>
       <S.CartZone>

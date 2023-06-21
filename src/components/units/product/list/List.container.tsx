@@ -1,10 +1,10 @@
 import ListPresenter from './List.presenter';
-import dummyData from '../../../../dummy/data.json';
+
 // import axios from 'axios';
 // import { useEffect } from 'react';
 
 export interface DummyData {
-  id: number;
+  item_no: number;
   item_name: string;
   detail_image_url: string;
   price: string;
@@ -20,12 +20,7 @@ export interface DummyData {
 //   }
 // };
 
-const ListContainer = () => {
-  const data: DummyData[] = [...dummyData].sort((a, b) => b.score - a.score);
-
-  // useEffect(() => {
-  //   checkExpress();
-  // }, []);
+const ListContainer = ({ data }: { data: DummyData[] }) => {
   return <ListPresenter data={data} />;
 };
 

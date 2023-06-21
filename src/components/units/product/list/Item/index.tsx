@@ -14,7 +14,7 @@ const Item = (props: ItemProps) => {
   const { data } = props;
   const { onClickMoveTo } = useMoveTo();
   return (
-    <ItemCard onClick={onClickMoveTo(`/products/${data.id}`)}>
+    <ItemCard onClick={onClickMoveTo(`/products/${data.item_no}`)}>
       <Image
         src={data.detail_image_url}
         alt="product_image"

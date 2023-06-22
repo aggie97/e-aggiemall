@@ -13,3 +13,11 @@ export interface ReqresResourceReturnDataType {
   color: string;
   pantone_value: string;
 }
+
+export interface Product {
+  item_no: number;
+  item_name: string;
+  detail_image_url: string;
+  price: string;
+  score: number;
+}

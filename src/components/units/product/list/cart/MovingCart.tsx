@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { type DummyData } from '../List.container';
+import { useRecoilValue } from 'recoil';
+
+import type { Product } from '../../../../../types/types';
+import { cartListStatsState } from '../../../../../store/store';
 
 const MovingCartWrapper = styled.div`
   position: sticky;
@@ -66,14 +69,14 @@ const RecentViewedListBox = styled.div`
 `;
 
 const MovingCart = () => {
-  const cartItemsCount = 0;
+  const { totalNum } = useRecoilValue(cartListStatsState);
   const recentViewedItemCount = 0;
-  const recentViewedItems: DummyData[] = [];
+  const recentViewedItems: Product[] = [];
   return (
     <MovingCartWrapper>
       <Section>
         <Link href="/cart">
-          장바구니 <span>{cartItemsCount}</span>
+          장바구니 <span>{totalNum}</span>
         </Link>
       </Section>
       <Divider />

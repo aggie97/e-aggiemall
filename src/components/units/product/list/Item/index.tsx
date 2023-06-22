@@ -1,17 +1,18 @@
 import Image from 'next/image';
+
 import useMoveTo from '../../../../../utils/MoveTo';
 import ItemCard from '../../../../common/itemCard';
-import { type DummyData } from '../List.container';
+import CartButton from '../../../../common/cartButton';
+import { Product } from '../../../../../types/types';
 
 interface ItemProps {
-  data: DummyData;
+  data: Product;
 }
 
-const blurURL =
+const TEST_BLUR_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOcYAwAAVkAxbGRRlAAAAAASUVORK5CYII=';
 
-const Item = (props: ItemProps) => {
-  const { data } = props;
+const Item = ({ data }: ItemProps) => {
   const { onClickMoveTo } = useMoveTo();
   return (
     <ItemCard onClick={onClickMoveTo(`/products/${data.item_no}`)}>
@@ -21,11 +22,14 @@ const Item = (props: ItemProps) => {
         width={200}
         height={200}
         placeholder="blur"
-        blurDataURL={blurURL}
+        blurDataURL={TEST_BLUR_URL}
       />
       <div />
       <span>{data.item_name ?? 'Loading...'}</span>
-      <span>{data.price ?? 'Loading...'}</span>
+      <div className="footer">
+        <span>{data.price ?? 'Loading...'}</span>
+        <CartButton mode="toggle" data={data} />
+      </div>
     </ItemCard>
   );
 };

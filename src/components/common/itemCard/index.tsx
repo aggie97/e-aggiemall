@@ -17,6 +17,12 @@ const StyledCardWrapper = styled.div`
     box-shadow: 0px 0px 15px 3px rgb(0 0 0/0.1);
   }
   transition: box-shadow 0.2s ease-in-out;
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const ItemCard = ({ onClick, children }: ItemCardProps) => {

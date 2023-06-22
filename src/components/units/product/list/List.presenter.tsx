@@ -1,10 +1,10 @@
 import Item from './Item';
-import { type DummyData } from './List.container';
 import * as S from './List.styles';
 import MovingCart from './cart/MovingCart';
+import type { Product } from '../../../../types/types';
 
 interface ListPresenterProps {
-  data: DummyData[];
+  data: Product[];
 }
 
 const ListPresenter = ({ data }: ListPresenterProps) => {

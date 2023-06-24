@@ -14,7 +14,9 @@
     "react/react-in-jsx-scope": "off",
     "react/function-component-definition": "off",
     "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/no-unused-vars": "warn"
+    "@typescript-eslint/no-unused-vars": "warn",
+    "react/props-types": "off",
+    "react/require-default-props": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"

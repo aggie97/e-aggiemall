@@ -1,9 +1,8 @@
-import { MouseEvent, ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface ItemCardProps {
   children: JSX.Element | ReactNode;
-  onClick: (event: MouseEvent) => void;
 }
 const StyledCardWrapper = styled.div`
   padding: 0.5rem;
@@ -23,10 +22,19 @@ const StyledCardWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  img {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
-const ItemCard = ({ onClick, children }: ItemCardProps) => {
-  return <StyledCardWrapper onClick={onClick}>{children}</StyledCardWrapper>;
+const ItemCard = ({ children }: ItemCardProps) => {
+  return <StyledCardWrapper>{children}</StyledCardWrapper>;
 };
 
 export default ItemCard;

@@ -11,7 +11,7 @@ const MovingCartWrapper = styled.div`
 
   width: 100px;
   height: 400px;
-  top: 2rem;
+  top: calc(2rem + 80px);
 
   display: flex;
   flex-direction: column;

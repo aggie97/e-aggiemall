@@ -1,11 +1,11 @@
 import { type MouseEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import ItemCard from '../../../../common/itemCard';
 import CartButton from '../../../../common/cartButton';
 import { Product } from '../../../../../types/types';
-import { cartListState } from '../../../../../store/store';
+import { cartListState, cartListStatsState } from '../../../../../store/store';
 
 interface ItemProps {
   data: Product;
@@ -16,6 +16,7 @@ const TEST_BLUR_URL =
 
 const Item = ({ data }: ItemProps) => {
   const [cartList, setCartList] = useRecoilState(cartListState);
+  const { totalNum } = useRecoilValue(cartListStatsState);
 
   const isInCart = cartList.some((product) => product.item_no === data.item_no);
 
@@ -33,6 +34,11 @@ const Item = ({ data }: ItemProps) => {
       );
     } else {
       // 없다면 담기
+      // 장바구니 개수 제한(3개)
+      if (totalNum > 2) {
+        alert('장바구니가 가득찼습니다.');
+        return;
+      }
       setCartList((oldCartList) => [...oldCartList, { ...(data as Product) }]);
     }
   };

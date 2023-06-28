@@ -87,6 +87,7 @@ const Pagination = () => {
     };
   }, []);
 
+  // styled-component로 동적 스타일 적용 시, 스크롤이 진행되는 만큼 class가 생성되어 너무 많은 class생성을 피하기 위한 인라인 스타일 적용
   const blinderLeftStyle = { transform: `translate3d(-${offset}%, 0, 0)` };
   const blinderRightStyle = { transform: `translate3d(${offset}%, 0, 0)` };
 

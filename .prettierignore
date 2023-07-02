@@ -1,0 +1,15 @@
+.babelrc
+.next
+node_modules
+
+.eslintrc.json
+.gitignore
+.prettierrc
+.lintstagedrc.json
+
+next-env.d.ts
+next.config.js
+package.json
+README.md
+tsconfig.json
+yarn.lock

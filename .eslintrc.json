@@ -17,7 +17,7 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "react/props-types": "off",
     "react/require-default-props": "off",
-    "no-restricted-imports": ["error", { "patterns": ["..*"] }]
+    "no-restricted-imports": ["warn", { "patterns": ["..*"] }]
   },
   "parserOptions": {
     "project": "./tsconfig.json"

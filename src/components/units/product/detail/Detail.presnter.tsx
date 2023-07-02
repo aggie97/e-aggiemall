@@ -4,8 +4,8 @@ interface DetailPresenterProps {
   goodsId: string;
 }
 
-const DetailPresenter = (props: DetailPresenterProps) => {
-  return <S.ProductDetailWrapper>상품 {props.goodsId}의 상세 페이지임</S.ProductDetailWrapper>;
+const DetailPresenter = ({ goodsId }: DetailPresenterProps) => {
+  return <S.ProductDetailWrapper>상품 {goodsId}의 상세 페이지임</S.ProductDetailWrapper>;
 };
 
 export default DetailPresenter;

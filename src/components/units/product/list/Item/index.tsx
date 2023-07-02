@@ -54,9 +54,9 @@ const Item = ({ data }: ItemProps) => {
           blurDataURL={TEST_BLUR_URL}
         />
         <div />
-        <span>{data.item_name ?? 'Loading...'}</span>
+        <span>{data.item_name}</span>
         <div className="footer">
-          <span>{data.price ?? 'Loading...'}</span>
+          <span>{data.price}</span>
           <CartButton mode="toggle" onClickButton={onClickButton} isInCart={isInCart} />
         </div>
       </Link>

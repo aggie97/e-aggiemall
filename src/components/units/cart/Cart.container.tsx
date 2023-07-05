@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { cartListState } from 'src/store/store';
 import CartPresenter from './Cart.presenter';
-import { cartListState } from '../../../store/store';
 
 const CartContainer = () => {
   const cartList = useRecoilValue(cartListState);

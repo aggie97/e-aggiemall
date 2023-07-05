@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { atom, selector } from 'recoil';
-import { Product } from '../types/types';
+import { Product } from 'src/types/types';
 
 export const productsState = atom<Product[]>({
   key: `productsState${randomUUID}`,

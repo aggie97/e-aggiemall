@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 
-import type { Product } from '../../../../../types/types';
-import { cartListStatsState } from '../../../../../store/store';
+import type { Product } from 'src/types/types';
+import { cartListStatsState } from 'src/store/store';
 
 const MovingCartWrapper = styled.div`
   position: sticky;

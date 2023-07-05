@@ -1,5 +1,5 @@
+import type { Product } from 'src/types/types';
 import ListPresenter from './List.presenter';
-import type { Product } from '../../../../types/types';
 
 // import axios from 'axios';
 // import { useEffect } from 'react';

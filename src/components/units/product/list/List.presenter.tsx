@@ -1,7 +1,7 @@
+import type { Product } from 'src/types/types';
 import Item from './Item';
 import * as S from './List.styles';
 import MovingCart from './cart/MovingCart';
-import type { Product } from '../../../../types/types';
 import Pagination from './pagination';
 
 interface ListPresenterProps {

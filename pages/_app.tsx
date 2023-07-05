@@ -1,9 +1,9 @@
 import { RecoilRoot } from 'recoil';
 import type { AppProps } from 'next/app';
-import '../styles/reset.css';
+import 'styles/reset.css';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from '../styles/GlobalStyles';
-import Layout from '../src/components/common/layout';
+import { GlobalStyle } from 'styles/GlobalStyles';
+import Layout from 'src/components/common/layout';
 
 interface ThemeInterface {
   colors: {

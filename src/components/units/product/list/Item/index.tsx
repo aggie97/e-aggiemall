@@ -2,10 +2,10 @@ import { type MouseEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import ItemCard from '../../../../common/itemCard';
-import CartButton from '../../../../common/cartButton';
-import { Product } from '../../../../../types/types';
-import { cartListState, cartListStatsState } from '../../../../../store/store';
+import ItemCard from 'src/components/common/itemCard';
+import CartButton from 'src/components/common/cartButton';
+import { Product } from 'src/types/types';
+import { cartListState, cartListStatsState } from 'src/store/store';
 
 interface ItemProps {
   data: Product;

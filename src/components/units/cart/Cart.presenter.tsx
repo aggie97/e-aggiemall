@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Product } from '../../../types/types';
+import { Product } from 'src/types/types';
 import * as S from './Cart.styles';
 
 interface CartPresenterProps {

@@ -86,6 +86,9 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+img {
+  vertical-align: bottom;
+}
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -124,7 +127,11 @@ table {
   border-spacing: 0;
 }
 
-* {
-  background-color: #fff;
-  color: #000;
+a {
+  text-decoration: none;
+  color: #222;
+}
+
+a:hover {
+  text-decoration: underline;
 }

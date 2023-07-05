@@ -5,7 +5,7 @@ node_modules
 .eslintrc.json
 .gitignore
 .prettierrc
-.lintstagedrc.json
+.lintstagedrc.js
 
 next-env.d.ts
 next.config.js

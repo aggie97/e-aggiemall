@@ -15,29 +15,59 @@ const CartPresenter = ({ cartList, checkedProducts, onSelectProduct }: CartPrese
       <section className="cart-title">
         <h1>장바구니</h1>
       </section>
-      <ul className="cart-content">
-        {cartList.map((product) => (
-          <li className="product-in-cart">
-            <input
-              type="checkbox"
-              onChange={(event) => onSelectProduct(event.target.checked, product.item_no)}
-              checked={checkedProducts.includes(product.item_no)}
-            />
-            <div className="product-info">
-              <Link href={`/products/${product.item_no}`}>
-                <Image
-                  alt={product.item_name}
-                  src={product.detail_image_url}
-                  width={78}
-                  height={78}
-                />
-              </Link>
-              <Link href={`/products/${product.item_no}`}>{product.item_name}</Link>
-              <span>{product.price}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table className="cart-table">
+        <thead>
+          <tr className="table-head">
+            <th scope="col">
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label>
+                <input type="checkbox" />
+                <span>&nbsp;&nbsp;전체선택</span>
+              </label>
+            </th>
+            <th scope="colgroup" colSpan={3}>
+              상품정보
+            </th>
+            <th scope="col">상품금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartList.map((product) => (
+            <tr className="cart-deal-item">
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>
+                <Link href={`/products/${product.item_no}`}>
+                  <Image
+                    src={product.detail_image_url}
+                    width={78}
+                    height={78}
+                    alt={product.item_name}
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOcYAwAAVkAxbGRRlAAAAAASUVORK5CYII="
+                  />
+                </Link>
+              </td>
+              <td colSpan={2}>
+                <div className="product-info">
+                  <Link href={`/products/${product.item_no}`}>
+                    <span>{product.item_name}</span>
+                  </Link>
+                </div>
+                <div className="product-select-count">
+                  <select>
+                    {Array.from({ length: 10 }, (_, index) => (
+                      <option>{index + 1}</option>
+                    ))}
+                  </select>
+                </div>
+              </td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </S.CartPageWrapper>
   );
 };

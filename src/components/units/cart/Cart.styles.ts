@@ -11,8 +11,7 @@ export const CartPageWrapper = styled.section`
   .cart-title {
     background: url('https://img1a.coupangcdn.com/image/order/img_orderstep4.gif') no-repeat 0 -200px;
     height: 45px;
-    margin-bottom: 0;
-    padding-bottom: 32px;
+
     h1 {
       width: 1px;
       height: 1px;
@@ -20,25 +19,64 @@ export const CartPageWrapper = styled.section`
     }
   }
 
-  .product-in-cart {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #333;
-    gap: 2rem;
-    padding: 1rem;
-    .product-info {
+  .cart-table {
+    width: 100%;
+    margin-top: 2rem;
+    .table-head {
       width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      *:nth-of-type(1) {
-        flex: 1 1 100px;
+      font-weight: 600;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      background-color: #fafafa;
+      th {
+        height: 40px;
+        vertical-align: middle;
+        text-align: center;
       }
-      *:nth-of-type(2) {
-        flex: 3 1 700px;
+      th:first-of-type {
+        label {
+          position: relative;
+          span {
+            position: absolute;
+            width: 64px;
+          }
+        }
       }
-      *:nth-of-type(3) {
-        flex: 1 1 100px;
+    }
+
+    .cart-deal-item {
+      border: 1px solid #ddd;
+      border-left: none;
+      border-right: none;
+      td {
+        vertical-align: middle;
+        text-align: center;
+      }
+      td:nth-of-type(1) {
+        width: 50px;
+        padding: 1rem 0;
+      }
+      td:nth-of-type(2) {
+        width: 80px;
+        padding: 1rem 1rem 1rem 0;
+      }
+      td:nth-of-type(3) {
+        width: 700px;
+        padding-right: 1rem;
+        .product-info {
+          border-bottom: 1px solid #ddd;
+          line-height: 35px;
+          text-align: start;
+          vertical-align: top;
+        }
+        .product-select-count {
+          line-height: 35px;
+          text-align: end;
+        }
+      }
+      td:nth-of-type(4) {
+        width: 170px;
+        border-left: 1px solid #ddd;
       }
     }
   }

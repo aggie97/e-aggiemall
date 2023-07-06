@@ -13,8 +13,8 @@ export default async function getProducts(req: NextApiRequest, res: NextApiRespo
         item_no: index + 1,
         item_name: `food ${index + 1}`,
         detail_image_url: images[index % 10],
-        price: '10,000원',
-        score: 1,
+        price: 10000,
+        score: Math.random() * 100,
       };
     });
     res.statusCode = 200;

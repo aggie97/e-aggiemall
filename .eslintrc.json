@@ -17,7 +17,8 @@
     "@typescript-eslint/no-unused-vars": "warn",
     "react/props-types": "off",
     "react/require-default-props": "off",
-    "absolute-only/imports": ["error", {"allowRootRelative": true}]
+    "absolute-only/imports": ["error", {"allowRootRelative": true}],
+    "@typescript-eslint/no-use-before-define": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"

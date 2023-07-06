@@ -1,19 +1,15 @@
-import type { Product } from 'src/types/types';
+import type { Data } from 'src/types/types';
 import Item from './Item';
 import * as S from './List.styles';
 import MovingCart from './cart/MovingCart';
 import Pagination from './pagination';
 
-interface ListPresenterProps {
-  data: Product[];
-}
-
-const ListPresenter = ({ data }: ListPresenterProps) => {
+const ListPresenter = ({ productItems, totalPage }: Data) => {
   return (
     <>
       <S.ProductListWrapper>
         <S.ListBox>
-          {data.map((el) => (
+          {productItems.map((el) => (
             <Item key={el.item_no} data={el} />
           ))}
         </S.ListBox>

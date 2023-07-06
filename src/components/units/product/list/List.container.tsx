@@ -1,20 +1,10 @@
-import type { Product } from 'src/types/types';
+import type { Data } from 'src/types/types';
 import ListPresenter from './List.presenter';
 
-// import axios from 'axios';
-// import { useEffect } from 'react';
+const ListContainer = (props: Data) => {
+  const { productItems, page, totalPage } = props;
 
-// const checkExpress = async () => {
-//   try {
-//     const res = await axios.get('/getData');
-//     console.log(res);
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
-
-const ListContainer = ({ data }: { data: Product[] }) => {
-  return <ListPresenter data={data} />;
+  return <ListPresenter page={page} totalPage={totalPage} productItems={productItems} />;
 };
 
 export default ListContainer;

@@ -21,3 +21,9 @@ export interface Product {
   price: number;
   score: number;
 }
+
+export interface Data {
+  page: number;
+  totalPage: number;
+  productItems: Product[];
+}

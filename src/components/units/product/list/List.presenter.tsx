@@ -17,7 +17,7 @@ const ListPresenter = ({ productItems, totalPage }: Data) => {
           <MovingCart />
         </S.CartZone>
       </S.ProductListWrapper>
-      <Pagination />
+      <Pagination totalPage={totalPage} />
     </>
   );
 };

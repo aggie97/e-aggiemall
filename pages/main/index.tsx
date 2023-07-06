@@ -5,7 +5,7 @@ const MainPage: NextPage = () => {
   return (
     <>
       메인 페이지입니다~
-      <Link href="/products">상품 보러 가기</Link>
+      <Link href="/products?page=1">상품 보러 가기</Link>
     </>
   );
 };

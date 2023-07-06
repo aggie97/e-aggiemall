@@ -56,7 +56,7 @@ const Item = ({ data }: ItemProps) => {
         <div />
         <span>{data.item_name}</span>
         <div className="footer">
-          <span>{data.price}</span>
+          <span>{data.price.toLocaleString()}원</span>
           <CartButton mode="toggle" onClickButton={onClickButton} isInCart={isInCart} />
         </div>
       </Link>

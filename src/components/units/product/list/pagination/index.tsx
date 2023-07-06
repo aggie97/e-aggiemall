@@ -1,15 +1,59 @@
-import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+import { Data } from '@src/types/types';
+import { useState } from 'react';
+
+const Pagination = ({ totalPage }: Pick<Data, 'totalPage'>) => {
+  const router = useRouter();
+
+  const [startPage, setStartPage] = useState(1);
+  const lastPage = totalPage;
+
+  const onClickPrevPage = () => {
+    setStartPage((prev) => prev - 5);
+    router.push({ pathname: '/products', query: { page: startPage - 5 } });
+  };
+  const onClickNextPage = () => {
+    setStartPage((prev) => prev + 5);
+    router.push({ pathname: '/products', query: { page: startPage + 5 } });
+  };
+  return (
+    <PaginationBox>
+      <div className="link-container">
+        <button type="button" onClick={onClickPrevPage} disabled={startPage < 6}>
+          &lt;
+        </button>
+        {new Array(5).fill(1).map((_, index) =>
+          startPage + index <= lastPage ? (
+            <Link
+              key={Math.random()}
+              href={{ pathname: '/products', query: { page: index + startPage } }}
+              className={`${router.query.page === String(index + startPage) && 'selected'}`}
+            >
+              {index + startPage}
+            </Link>
+          ) : (
+            <span />
+          )
+        )}
+        <button type="button" onClick={onClickNextPage} disabled={startPage + 4 >= lastPage}>
+          &gt;
+        </button>
+      </div>
+    </PaginationBox>
+  );
+};
 
 const PaginationBox = styled.div`
-  position: relative;
-  margin: 50px 0;
-  padding: 50px 0;
+  position: sticky;
+  bottom: 0;
+  padding: 1rem 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border-top: 1px solid black;
+  background-color: #fff;
+  box-shadow: 0 -1px 10px 5px rgba(144 144 144/0.3);
 
   .link-container {
     display: flex;
@@ -19,7 +63,8 @@ const PaginationBox = styled.div`
     background-color: transparent;
   }
 
-  a {
+  a,
+  span {
     display: inline-block;
     width: 29px;
     height: 29px;
@@ -43,69 +88,15 @@ const PaginationBox = styled.div`
     }
   }
 
-  .blinder {
-    position: absolute;
-    width: calc(100vw / 2);
-    height: 100%;
-    top: -2px;
+  button {
+    width: 29px;
+    height: 29px;
+    border: none;
     background-color: #fff;
-  }
-
-  .left {
-    left: 0;
-  }
-
-  .right {
-    right: 0;
+    :hover:not(:disabled) {
+      color: red;
+    }
   }
 `;
-
-const threshold = new Array(101).fill(0).map((_, i) => i / 100);
-
-const Pagination = () => {
-  const boxRef = useRef<HTMLDivElement | null>(null);
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    const box = boxRef.current;
-    if (!box) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setOffset(entry.intersectionRatio * 100);
-          }
-        });
-      },
-      { threshold }
-    );
-
-    observer.observe(box);
-
-    // eslint-disable-next-line consistent-return
-    return () => {
-      observer.unobserve(box);
-    };
-  }, []);
-
-  // styled-component로 동적 스타일 적용 시, 스크롤이 진행되는 만큼 class가 생성되어 너무 많은 class생성을 피하기 위한 인라인 스타일 적용
-  const blinderLeftStyle = { transform: `translate3d(-${offset}%, 0, 0)` };
-  const blinderRightStyle = { transform: `translate3d(${offset}%, 0, 0)` };
-
-  return (
-    <PaginationBox ref={boxRef}>
-      <div className="blinder left" style={blinderLeftStyle} />
-      <div className="link-container">
-        <Link href="/">{'<'}</Link>
-        <Link href="/" className="selected">
-          1
-        </Link>
-        <Link href="/">2</Link>
-        <Link href="/">3</Link>
-        <Link href="/">{'>'}</Link>
-      </div>
-      <div className="blinder right" style={blinderRightStyle} />
-    </PaginationBox>
-  );
-};
 
 export default Pagination;

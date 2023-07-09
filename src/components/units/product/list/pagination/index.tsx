@@ -4,47 +4,6 @@ import { useRouter } from 'next/router';
 import { Data } from '@src/types/types';
 import { useState } from 'react';
 
-const Pagination = ({ totalPage }: Pick<Data, 'totalPage'>) => {
-  const router = useRouter();
-
-  const [startPage, setStartPage] = useState(1);
-  const lastPage = totalPage;
-
-  const onClickPrevPage = () => {
-    setStartPage((prev) => prev - 5);
-    router.push({ pathname: '/products', query: { page: startPage - 5 } });
-  };
-  const onClickNextPage = () => {
-    setStartPage((prev) => prev + 5);
-    router.push({ pathname: '/products', query: { page: startPage + 5 } });
-  };
-  return (
-    <PaginationBox>
-      <div className="link-container">
-        <button type="button" onClick={onClickPrevPage} disabled={startPage < 6}>
-          &lt;
-        </button>
-        {new Array(5).fill(1).map((_, index) =>
-          startPage + index <= lastPage ? (
-            <Link
-              key={Math.random()}
-              href={{ pathname: '/products', query: { page: index + startPage } }}
-              className={`${router.query.page === String(index + startPage) && 'selected'}`}
-            >
-              {index + startPage}
-            </Link>
-          ) : (
-            <span />
-          )
-        )}
-        <button type="button" onClick={onClickNextPage} disabled={startPage + 4 >= lastPage}>
-          &gt;
-        </button>
-      </div>
-    </PaginationBox>
-  );
-};
-
 const PaginationBox = styled.div`
   position: sticky;
   bottom: 0;
@@ -98,5 +57,50 @@ const PaginationBox = styled.div`
     }
   }
 `;
+
+const Pagination = ({ totalPage }: Pick<Data, 'totalPage'>) => {
+  const router = useRouter();
+
+  const [startPage, setStartPage] = useState(1);
+  const lastPage = totalPage;
+
+  const onClickPrevPage = () => {
+    setStartPage((prev) => prev - 5);
+    router.push({ pathname: '/products', query: { page: startPage - 5 } });
+  };
+  const onClickNextPage = () => {
+    setStartPage((prev) => prev + 5);
+    router.push({ pathname: '/products', query: { page: startPage + 5 } });
+  };
+
+  return (
+    <PaginationBox>
+      <div className="link-container">
+        <button type="button" onClick={onClickPrevPage} disabled={startPage < 6}>
+          &lt;
+        </button>
+        {new Array(5).fill(1).map(
+          (_, index) =>
+            startPage + index <= lastPage && (
+              <Link
+                key={Math.random()}
+                href={{ pathname: '/products', query: { page: index + startPage } }}
+                className={`${
+                  router.query.page
+                    ? router.query.page === String(index + startPage) && 'selected'
+                    : index === 0 && 'selected'
+                }`}
+              >
+                {index + startPage}
+              </Link>
+            )
+        )}
+        <button type="button" onClick={onClickNextPage} disabled={startPage + 4 >= lastPage}>
+          &gt;
+        </button>
+      </div>
+    </PaginationBox>
+  );
+};
 
 export default Pagination;

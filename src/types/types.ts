@@ -1,17 +1,7 @@
-export interface ReqresResourceReturnType {
-  data?: ReqresResourceReturnDataType[];
+export interface Data {
   page: number;
-  per_page: number;
-  total: number;
-  total_pages: number;
-}
-
-export interface ReqresResourceReturnDataType {
-  id: number;
-  name: string;
-  year: number;
-  color: string;
-  pantone_value: string;
+  totalPage: number;
+  productItems: Product[];
 }
 
 export interface Product {
@@ -20,10 +10,19 @@ export interface Product {
   detail_image_url: string;
   price: number;
   score: number;
+  availableCoupon?: boolean;
 }
 
-export interface Data {
-  page: number;
-  totalPage: number;
-  productItems: Product[];
+export interface CartItem extends Product {
+  count: number | 1;
+}
+
+export interface Coupon {
+  id: number;
+  type: 'absolute' | 'percentage';
+  value: number;
+}
+
+export interface CouponData {
+  coupons: Coupon[];
 }

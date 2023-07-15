@@ -1,10 +1,10 @@
-import { type MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
+import type { CartItem, Product } from 'src/types/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import ItemCard from 'src/components/common/itemCard';
 import CartButton from 'src/components/common/cartButton';
-import { Product } from 'src/types/types';
 import { cartListState, cartListStatsState } from 'src/store/store';
 
 interface ItemProps {
@@ -35,11 +35,11 @@ const Item = ({ data }: ItemProps) => {
     } else {
       // 없다면 담기
       // 장바구니 개수 제한(3개)
-      if (totalNum > 2) {
+      if (totalNum && totalNum > 2) {
         alert('장바구니가 가득찼습니다.');
         return;
       }
-      setCartList((oldCartList) => [...oldCartList, { ...(data as Product) }]);
+      setCartList((oldCartList) => [...oldCartList, { ...(data as CartItem) }]);
     }
   };
   return (
@@ -53,7 +53,7 @@ const Item = ({ data }: ItemProps) => {
           placeholder="blur"
           blurDataURL={TEST_BLUR_URL}
         />
-        <div />
+        <div className="divider" />
         <span>{data.item_name}</span>
         <div className="footer">
           <span>{data.price.toLocaleString()}원</span>

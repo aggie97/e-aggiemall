@@ -5,10 +5,7 @@ interface ItemCardProps {
   children: JSX.Element | ReactNode;
 }
 const StyledCardWrapper = styled.div`
-  padding: 0.5rem;
   height: 300px;
-  display: flex;
-  flex-direction: column;
 
   gap: 10px;
   cursor: pointer;
@@ -16,6 +13,10 @@ const StyledCardWrapper = styled.div`
     box-shadow: 0px 0px 15px 3px rgb(0 0 0/0.1);
   }
   transition: box-shadow 0.2s ease-in-out;
+
+  .divider {
+    padding-bottom: 10px;
+  }
 
   .footer {
     display: flex;
@@ -30,6 +31,10 @@ const StyledCardWrapper = styled.div`
 
   a {
     text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
   }
 `;
 

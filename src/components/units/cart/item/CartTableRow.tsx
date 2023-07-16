@@ -16,8 +16,8 @@ function CartTableBodyRow({ product, checkedProducts, onSelectProduct }: CartTab
       <td>
         <input
           type="checkbox"
-          onChange={(event) => onSelectProduct(event.target.checked, product.item_no)}
-          checked={checkedProducts.some((el) => el === product.item_no)}
+          onChange={(event) => onSelectProduct(event.target.checked, product)}
+          checked={checkedProducts.some((el) => el.item_no === product.item_no)}
         />
       </td>
       <td>

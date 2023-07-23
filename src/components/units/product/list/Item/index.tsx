@@ -1,5 +1,5 @@
 import type { MouseEvent } from 'react';
-import type { CartItem, Product } from 'src/types/types';
+import type { Product } from 'src/types/types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -39,7 +39,7 @@ const Item = ({ data }: ItemProps) => {
         alert('장바구니가 가득찼습니다.');
         return;
       }
-      setCartList((oldCartList) => [...oldCartList, { ...(data as CartItem) }]);
+      setCartList((oldCartList) => [...oldCartList, { ...data, count: 1, checked: false }]);
     }
   };
   return (

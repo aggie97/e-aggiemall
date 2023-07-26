@@ -5,8 +5,8 @@ import { CartItem, Product } from 'src/types/types';
 const useCart = () => {
   const [cartList, setCartList] = useRecoilState(cartListState);
 
-  /** 카트에 있는 상품인지 검사 */
-  const checkProductInCart = (itemId: number) => {
+  /** 카트에 이미 있는 상품인지 조회 */
+  const checkItemInCart = (itemId: number) => {
     return cartList.some(({ item_no }) => itemId === item_no);
   };
 
@@ -22,6 +22,13 @@ const useCart = () => {
       count: count ?? 1,
     };
     setCartList((prev) => [...prev, cartItem]);
+  };
+
+  /** 카트에 있는 상품 수량 변경 */
+  const changeItemCount = (itemId: number, count: number) => {
+    setCartList((prev) =>
+      prev.map((item) => (item.item_no === itemId ? { ...item, count } : { ...item }))
+    );
   };
 
   /** 카트에서 상품 제거 */
@@ -44,8 +51,9 @@ const useCart = () => {
 
   return {
     cartList,
-    checkProductInCart,
+    checkItemInCart,
     setItemToCart,
+    changeItemCount,
     deleteItemFromCart,
   };
 };

@@ -15,7 +15,6 @@ export interface Product {
 
 export interface CartItem extends Product {
   count: number;
-  checked: boolean;
 }
 
 export interface Coupon {

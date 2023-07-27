@@ -1,25 +1,16 @@
-import { randomUUID } from 'crypto';
-import { atom, selector } from 'recoil';
-import { Product } from 'src/types/types';
+import { atom } from 'recoil';
+import type { CartItem, Product } from 'src/types/types';
+
+export interface CartListStat {
+  totalNum: number;
+}
 
 export const productsState = atom<Product[]>({
-  key: `productsState${randomUUID}`,
+  key: `productsState`,
   default: [],
 });
 
-export const cartListState = atom<Product[]>({
-  key: `cartListState${randomUUID}`,
+export const cartListState = atom<CartItem[]>({
+  key: `cartListState`,
   default: [],
-});
-
-export const cartListStatsState = selector({
-  key: `cartListStatsState${randomUUID}`,
-  get: ({ get }) => {
-    const cartList = get(cartListState);
-    const totalNum = cartList.length;
-
-    return {
-      totalNum,
-    };
-  },
 });

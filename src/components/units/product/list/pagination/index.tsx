@@ -1,18 +1,25 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { Data } from '@src/types/types';
 import { useState } from 'react';
 
+import type { Data } from 'src/types/types';
+
 const PaginationBox = styled.div`
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  width: 100%;
   padding: 1rem 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background-color: #fff;
-  box-shadow: 0 -1px 10px 5px rgba(144 144 144/0.3);
+  opacity: 0.5;
+  box-shadow: 0 -1px 5px 1px rgba(144 144 144/0.3);
+  :hover {
+    opacity: 1;
+    background-color: #fff;
+  }
+  transition: opacity 0.2s ease-in-out, background-color 0.2s ease-in-out;
 
   .link-container {
     display: flex;
@@ -51,7 +58,7 @@ const PaginationBox = styled.div`
     width: 29px;
     height: 29px;
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     :hover:not(:disabled) {
       color: red;
     }
@@ -66,7 +73,7 @@ const Pagination = ({ totalPage }: Pick<Data, 'totalPage'>) => {
 
   const onClickPrevPage = () => {
     setStartPage((prev) => prev - 5);
-    router.push({ pathname: '/products', query: { page: startPage - 5 } });
+    router.push({ pathname: '/products', query: { page: startPage - 1 } });
   };
   const onClickNextPage = () => {
     setStartPage((prev) => prev + 5);
@@ -85,11 +92,11 @@ const Pagination = ({ totalPage }: Pick<Data, 'totalPage'>) => {
               <Link
                 key={Math.random()}
                 href={{ pathname: '/products', query: { page: index + startPage } }}
-                className={`${
-                  router.query.page
+                className={
+                  (router.query.page
                     ? router.query.page === String(index + startPage) && 'selected'
-                    : index === 0 && 'selected'
-                }`}
+                    : index === 0 && 'selected') || ''
+                }
               >
                 {index + startPage}
               </Link>

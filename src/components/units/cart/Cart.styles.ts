@@ -59,6 +59,9 @@ export const CartPageWrapper = styled.section`
       td:nth-of-type(2) {
         width: 80px;
         padding: 1rem 1rem 1rem 0;
+        img {
+          object-fit: cover;
+        }
       }
       td:nth-of-type(3) {
         width: 700px;

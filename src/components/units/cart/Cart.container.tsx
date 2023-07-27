@@ -1,26 +1,28 @@
-import { useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { cartListState } from 'src/store/store';
+import { useEffect, useState } from 'react';
+
+import useCart from 'src/hooks/useCart';
+import type { CartItem, Coupon } from 'src/types/types';
 import CartPresenter from './Cart.presenter';
 
-const CartContainer = () => {
-  // TODO: 체크박스 클릭 시, 체크박스 셀 ref 또한 작동해서 연속 2번 클릭되는 것 해결하기
-  const productCheckRef = useRef<HTMLInputElement>(null);
-  const onClickCheckboxCell = () => {
-    productCheckRef.current?.click();
-  };
+const CartContainer = ({ coupons }: { coupons: Coupon[] }) => {
+  const { cartList } = useCart();
+  const [checkedProducts, setCheckedProducts] = useState<CartItem[]>([]);
 
-  const cartList = useRecoilValue(cartListState);
-  const [checkedProducts, setCheckedProducts] = useState<number[]>([]);
+  // cartList와 checkedProducts 동기화
+  useEffect(() => {
+    setCheckedProducts((prev) =>
+      cartList.filter(({ item_no }) => prev.find((checked) => checked.item_no === item_no))
+    );
+  }, [cartList]);
 
-  const onSelectProduct = (checked: boolean, itemId: number) => {
-    if (checked) setCheckedProducts((prev) => [itemId, ...prev]);
-    else setCheckedProducts((prev) => prev.filter((id) => itemId !== id));
+  const onSelectProduct = (checked: boolean, item: CartItem) => {
+    if (checked) setCheckedProducts((prev) => [item, ...prev]);
+    else setCheckedProducts((prev) => prev.filter(({ item_no }) => item_no !== item.item_no));
   };
 
   const onSelectAllProducts = (checked: boolean) => {
     if (checked) {
-      setCheckedProducts(cartList.map((el) => el.item_no));
+      setCheckedProducts(() => cartList);
       return;
     }
     setCheckedProducts([]);
@@ -28,12 +30,11 @@ const CartContainer = () => {
 
   return (
     <CartPresenter
+      couponData={coupons}
       cartList={cartList}
       onSelectProduct={onSelectProduct}
       onSelectAllProducts={onSelectAllProducts}
       checkedProducts={checkedProducts}
-      productCheckRef={productCheckRef}
-      onClickCheckboxCell={onClickCheckboxCell}
     />
   );
 };

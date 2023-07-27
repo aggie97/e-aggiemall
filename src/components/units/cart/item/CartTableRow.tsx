@@ -1,32 +1,39 @@
-import { Product } from '@src/types/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { type ChangeEvent } from 'react';
+
+import useCart from 'src/hooks/useCart';
+import type { CartItem } from 'src/types/types';
 
 interface CartTableBodyRowProps {
-  product: Product;
-  checkedProducts: number[];
-  onSelectProduct: (checked: boolean, itemId: number) => void;
+  cartItem: CartItem;
+  onSelectProduct: (checked: boolean, item: CartItem) => void;
+  checked: boolean;
 }
 
-function CartTableBodyRow({ product, checkedProducts, onSelectProduct }: CartTableBodyRowProps) {
-  const [count, setCount] = useState(1);
+function CartTableBodyRow({ cartItem, onSelectProduct, checked }: CartTableBodyRowProps) {
+  const { changeItemCount } = useCart();
+
+  const onChangeCount = (event: ChangeEvent<HTMLSelectElement>) => {
+    changeItemCount(cartItem.item_no, Number(event.target.value));
+  };
+
   return (
-    <tr className="cart-deal-item" key={product.item_no}>
+    <tr className="cart-deal-item" key={cartItem.item_no}>
       <td>
         <input
           type="checkbox"
-          onChange={(event) => onSelectProduct(event.target.checked, product)}
-          checked={checkedProducts.some((el) => el.item_no === product.item_no)}
+          onChange={(event) => onSelectProduct(event.target.checked, cartItem)}
+          checked={checked}
         />
       </td>
       <td>
-        <Link href={`/products/${product.item_no}`}>
+        <Link href={`/products/${cartItem.item_no}`}>
           <Image
-            src={product.detail_image_url}
+            src={cartItem.detail_image_url}
             width={78}
             height={78}
-            alt={product.item_name}
+            alt={cartItem.item_name}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mOcYAwAAVkAxbGRRlAAAAAASUVORK5CYII="
           />
@@ -34,19 +41,20 @@ function CartTableBodyRow({ product, checkedProducts, onSelectProduct }: CartTab
       </td>
       <td colSpan={2}>
         <div className="product-info">
-          <Link href={`/products/${product.item_no}`}>
-            <span>{product.item_name}</span>
+          <Link href={`/products/${cartItem.item_no}`}>
+            <span>{cartItem.item_name}</span>
           </Link>
         </div>
         <div className="product-select-count">
-          <select onChange={(e) => setCount(Number(e.target.value))}>
+          {cartItem.price.toLocaleString()} x{' '}
+          <select onChange={onChangeCount}>
             {Array.from({ length: 10 }, (_, index) => (
               <option key={index}>{index + 1}</option>
             ))}
           </select>
         </div>
       </td>
-      <td>{(product.price * count).toLocaleString()}원</td>
+      <td>{(cartItem.price * (cartItem.count ?? 1)).toLocaleString()}원</td>
     </tr>
   );
 }

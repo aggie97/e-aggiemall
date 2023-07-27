@@ -4,7 +4,6 @@ import Body from './body';
 import Footer from './footer';
 
 const CommonWrapper = styled.div`
-  outline: 1px solid black;
   position: relative;
 `;
 

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 
 import type { Product } from 'src/types/types';
-import { cartListStatsState } from 'src/store/store';
+import { cartListState } from 'src/store/store';
 
 const MovingCartWrapper = styled.div`
   position: sticky;
@@ -16,18 +16,22 @@ const MovingCartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  > div:nth-of-type(3) {
+    padding: 0.75rem;
+  }
 `;
 
 const Section = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0.75rem;
   background-color: #39425b;
   font-size: 0.625rem;
   color: white;
+
   a {
     width: 100%;
+    padding: 0.75rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -59,7 +63,6 @@ const RecentViewedListBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.2rem;
 
   span {
     font-size: 0.75rem;
@@ -69,14 +72,14 @@ const RecentViewedListBox = styled.div`
 `;
 
 const MovingCart = () => {
-  const { totalNum } = useRecoilValue(cartListStatsState);
+  const cartList = useRecoilValue(cartListState);
   const recentViewedItemCount = 0;
   const recentViewedItems: Product[] = [];
   return (
     <MovingCartWrapper>
       <Section>
         <Link href="/cart">
-          장바구니 <span>{totalNum}</span>
+          장바구니 <span>{cartList.length}</span>
         </Link>
       </Section>
       <Divider />

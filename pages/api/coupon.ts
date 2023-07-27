@@ -1,4 +1,4 @@
-import { type Coupon } from '@src/types/types';
+import { type Coupon } from 'src/types/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const DummyCouponData: Coupon[] = [

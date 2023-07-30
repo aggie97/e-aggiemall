@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // eslint-disable-next-line import/prefer-default-export
-export const CartPageWrapper = styled.section`
+export const CartPageWrapper = styled.section<{ $cartHeaderImageURL: string }>`
   width: 1000px;
   border: 1px solid #e0e0e0;
   margin: 0 auto 70px;
@@ -9,7 +9,7 @@ export const CartPageWrapper = styled.section`
   background: #fff;
 
   .cart-title {
-    background: url('https://img1a.coupangcdn.com/image/order/img_orderstep4.gif') no-repeat 0 -200px;
+    background: ${({ $cartHeaderImageURL }) => `url(${$cartHeaderImageURL}) no-repeat 0 -200px`};
     height: 45px;
 
     h1 {

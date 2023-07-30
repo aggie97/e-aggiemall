@@ -1,6 +1,6 @@
+import { COUPANG_CART_HEADER_IMAGE_URL } from 'src/constants/url';
 import * as S from './Cart.styles';
 import CartTableBodyRow from './item/CartTableRow';
-
 import type { CartPresenterProps } from './Cart.types';
 import Expense from './expense/Expense.container';
 
@@ -11,7 +11,7 @@ const CartPresenter = ({
   onSelectProduct,
   onSelectAllProducts,
 }: CartPresenterProps) => (
-  <S.CartPageWrapper>
+  <S.CartPageWrapper $cartHeaderImageURL={COUPANG_CART_HEADER_IMAGE_URL}>
     <section className="cart-title">
       <h1>장바구니</h1>
     </section>

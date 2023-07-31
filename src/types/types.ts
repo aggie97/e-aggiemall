@@ -4,6 +4,10 @@ export interface Data {
   productItems: Product[];
 }
 
+export interface ProductData {
+  productData: Product;
+}
+
 export interface Product {
   item_no: number;
   item_name: string;

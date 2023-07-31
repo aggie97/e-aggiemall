@@ -26,12 +26,12 @@ const Expense = ({ couponData, checkedProducts }: ExpenseContainerProps) => {
     // 선택된 상품 중 쿠폰 적용 가능한 상품들이 없다면 0원 반환
     if (couponAvailableProducts.length === 0) return discountCost;
 
+    const [type, value] = coupon.split('/');
+
     const totalCouponAvailableCost = couponAvailableProducts.reduce(
       (total, { count, price }) => total + count * price,
       0
     );
-
-    const [type, value] = coupon.split('/');
 
     if (type === 'percentage') {
       discountCost = Math.floor(totalCouponAvailableCost * (Number(value) / 100));

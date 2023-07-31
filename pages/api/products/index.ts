@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import type { Product } from 'src/types/types';
 
-const DummyProductData = new Array(30).fill(0).map((_, index): Product => {
+export const DummyProductData = new Array(30).fill(0).map((_, index): Product => {
   const data = {
     item_no: index + 1,
     item_name: `food ${index + 1}`,

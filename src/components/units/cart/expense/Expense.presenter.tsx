@@ -9,6 +9,7 @@ const ExpensePresenter = ({
   totalCost,
 }: ExpensePresenterProps) => (
   <S.PaymentBox $visible={checkedProducts.length > 0}>
+    {/* 쿠폰 선택 박스 */}
     <div className="coupon-box">
       <select defaultValue="" onChange={onSelectCoupon}>
         <option value="">쿠폰 적용하기</option>
@@ -32,6 +33,7 @@ const ExpensePresenter = ({
         </optgroup>
       </select>
     </div>
+    {/* 비용 박스 */}
     <div className="total-calculation">
       <span>
         총 상품가격{' '}

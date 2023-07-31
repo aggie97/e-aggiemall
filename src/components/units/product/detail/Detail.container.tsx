@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router';
 import DetailPresenter from './Detail.presnter';
+import { DetailContainerProps } from './Detail.types';
 
-const DetailContainer = () => {
-  const router = useRouter();
-  const goodsId: string = router.asPath.split('/').at(-1)!;
-  return <DetailPresenter goodsId={goodsId} />;
+const DetailContainer = ({ product }: DetailContainerProps) => {
+  return <DetailPresenter itemNo={product.item_no} />;
 };
 
 export default DetailContainer;

@@ -7,6 +7,7 @@ import type { Data } from 'src/types/types';
 
 const PaginationBox = styled.div`
   position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
   padding: 1rem 0;
